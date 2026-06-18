@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Product | SneakyFlex</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-zinc-950 text-white">
+
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-red-600/30 rounded-full blur-3xl"></div>
+    <div class="absolute top-40 -right-32 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <main class="relative min-h-screen flex items-center justify-center px-6 py-10">
+
+    <div class="w-full max-w-4xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-8">
+
+      <div class="mb-8">
+        <h1 class="text-4xl font-black tracking-tight">
+          Add New Product
+        </h1>
+        <p class="text-zinc-400 mt-2">
+          Create a premium SneakyFlex shoe product.
+        </p>
+      </div>
+
+     <form action="/products/create" method="POST" enctype="multipart/form-data" class="grid md:grid-cols-2 gap-6">
+
+                <div>
+        <label class="text-sm text-zinc-300">Product Image</label>
+        <input 
+            type="file" 
+            name="image"
+            accept="image/*"
+            required
+            class="mt-2 w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 outline-none focus:border-red-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-red-600 file:text-white file:font-semibold hover:file:bg-red-700"
+        />
+        </div>
+
+        <div>
+          <label class="text-sm text-zinc-300">Product Name</label>
+          <input 
+            type="text" 
+            name="name"
+            placeholder="SneakyFlex Air Max"
+            required
+            class="mt-2 w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 outline-none focus:border-red-500"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm text-zinc-300">Price</label>
+          <input 
+            type="number" 
+            name="price"
+            placeholder="4999"
+            required
+            class="mt-2 w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 outline-none focus:border-red-500"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm text-zinc-300">Discount</label>
+          <input 
+            type="number" 
+            name="discount"
+            placeholder="10"
+            value="0"
+            class="mt-2 w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 outline-none focus:border-red-500"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm text-zinc-300">Background Color</label>
+          <input 
+            type="text" 
+            name="bgcolor"
+            placeholder="#111827"
+            class="mt-2 w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 outline-none focus:border-red-500"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm text-zinc-300">Panel Color</label>
+          <input 
+            type="text" 
+            name="panelcolor"
+            placeholder="#1f2937"
+            class="mt-2 w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 outline-none focus:border-red-500"
+          />
+        </div>
+
+        <div>
+          <label class="text-sm text-zinc-300">Text Color</label>
+          <input 
+            type="text" 
+            name="textcolor"
+            placeholder="#ffffff"
+            class="mt-2 w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 outline-none focus:border-red-500"
+          />
+        </div>
+
+        <div class="flex items-end">
+          <button 
+            type="submit"
+            class="w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 transition font-bold text-lg shadow-lg shadow-red-600/30"
+          >
+            Create Product
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
