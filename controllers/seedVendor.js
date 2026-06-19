@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const vendorModel = require("../models/vendor-model");
 
-mongoose.connect("mongodb://127.0.0.1:27017/SneakyFlex");
+mongoose.connect(process.env.MONGODB_URI);
 
 async function createVendorKeys() {
     await vendorModel.create([
