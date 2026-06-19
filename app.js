@@ -1,3 +1,4 @@
+require("dotenv").config();// isse saare env files ke vaiables ko use kar sakte hai
 const express = require("express");
 const app = express();
 
@@ -6,7 +7,7 @@ const db = require("./config/mongoose-connection");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 
-require("dotenv").config();// isse saare env files ke vaiables ko use kar sakte hai
+
 
 const ownersRouter = require("./routes/ownersRouter");
 const productsRouter = require("./routes/productsRouter");
@@ -41,4 +42,5 @@ app.use("/products", productsRouter);
 app.use("/", indexRouter);
 
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT);
