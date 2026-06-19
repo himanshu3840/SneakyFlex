@@ -40,8 +40,8 @@ app.use("/owners", ownersRouter);
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 app.use("/", indexRouter);
-const seedVendor = require("./seed/vendor");
-seedVendor();
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
