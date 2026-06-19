@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const inviteSchema = mongoose.Schema({
-    code: String,
+    key: String,
     used: {
         type: Boolean,
         default: false

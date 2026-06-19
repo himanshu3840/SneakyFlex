@@ -10,14 +10,18 @@ const userSchema = mongoose.Schema({
     },
     email: String,
     password: String,
-    cart: {
-        type: Array,
-        default: [],
-    },
-    orders: {
-        type: Array,
-        default: [],
-    },
+   cart: [
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "product"
+    }
+    ],
+    orders: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "order"
+        }
+    ],
     isVendor:{
         type :Boolean,
         default:false,

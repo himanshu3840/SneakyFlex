@@ -38,7 +38,7 @@ router.post("/create", upload.single("image"), async function(req,res){
         //agar koi dusri property access karna chahe to wo error nahi dega bulki undefined dega
 
         req.flash("success","Product created successfully.");
-        res.redirect("/owners/product");
+        res.redirect("/shop");
 
     }catch(err){
         res.status(500).send(err.message);

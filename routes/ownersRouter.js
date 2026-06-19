@@ -6,18 +6,14 @@ const userModel = require("../models/user-model");
 const isLoggedin = require("../middlewares/isLoggedin");
 const isVendor = require("../middlewares/isVendor");
 
-
 router.get("/", function (req, res) {
     res.send("hey it's working");
 });
-
-
 
 router.get("/product", isLoggedin, isVendor, async function(req,res){
     let products = await productModel.find();
     res.render("products", { products });
 });
-
 
 router.get("/becomeVendor", isLoggedin, function(req,res){
     res.render("becomeVendor", {
@@ -34,24 +30,24 @@ router.post("/becomeVendor", isLoggedin, async function(req,res){
 
         if(!vendorKey){
             req.flash("error", "Invalid vendor key");
-            return res.redirect("/users/becomeVendor");
+            return res.redirect("/owners/becomeVendor");
         }
 
         if(vendorKey.used){
             req.flash("error", "This vendor key is already used");
-            return res.redirect("/users/becomeVendor");
+            return res.redirect("/owners/becomeVendor");
         }
 
-        await userModel.findByIdAndUpdate(req.user.userid, {
+        await userModel.findByIdAndUpdate(req.user._id, {
             isVendor: true
         });
 
         vendorKey.used = true;
-        vendorKey.usedBy = req.user.userid;
+        vendorKey.usedBy = req.user._id;
         await vendorKey.save();
 
         req.flash("success", "You are now a vendor");
-        res.redirect("/shop");
+        res.redirect("/owners/product");
 
     }catch(err){
         res.send(err.message);
