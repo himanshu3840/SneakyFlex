@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const productModel = require("../models/product-model");
-const vendorModel = require("../models/vendor-model");
+
 const userModel = require("../models/user-model");
 const isLoggedin = require("../middlewares/isLoggedin");
 const isVendor = require("../middlewares/isVendor");
@@ -22,19 +22,14 @@ router.get("/becomeVendor", isLoggedin, function(req,res){
     });
 });
 
-router.post("/becomeVendor", isLoggedin, async function(req,res){
-    try{
+router.post("/becomeVendor", isLoggedin, async function(req, res) {
+    try {
         let { key } = req.body;
 
-        let vendorKey = await vendorModel.findOne({ key });
+        let vendorKeys = process.env.VENDOR_KEYS.split(",");
 
-        if(!vendorKey){
+        if (!vendorKeys.includes(key)) {
             req.flash("error", "Invalid vendor key");
-            return res.redirect("/owners/becomeVendor");
-        }
-
-        if(vendorKey.used){
-            req.flash("error", "This vendor key is already used");
             return res.redirect("/owners/becomeVendor");
         }
 
@@ -42,14 +37,10 @@ router.post("/becomeVendor", isLoggedin, async function(req,res){
             isVendor: true
         });
 
-        vendorKey.used = true;
-        vendorKey.usedBy = req.user._id;
-        await vendorKey.save();
-
         req.flash("success", "You are now a vendor");
         res.redirect("/owners/product");
 
-    }catch(err){
+    } catch (err) {
         res.send(err.message);
     }
 });
